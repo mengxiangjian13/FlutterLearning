@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'demo.dart';
+import 'async.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeList extends StatelessWidget {
-  final _contents = ["first demo (RandomWords)"];
+  final _contents = ["first demo (RandomWords)", "Threading & asynchronicity"];
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +52,9 @@ class HomeList extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
+                  if (index == 1) {
+                    return AsyncDemo();
+                  }
                   return RandomWords();
                 }
                 )

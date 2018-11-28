@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'demo.dart';
+import 'isolates.dart';
 import 'async.dart';
 
 void main() => runApp(MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeList extends StatelessWidget {
-  final _contents = ["first demo (RandomWords)", "Threading & asynchronicity"];
+  final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", "Isolates"];
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +55,8 @@ class HomeList extends StatelessWidget {
                 builder: (BuildContext context) {
                   if (index == 1) {
                     return AsyncDemo();
+                  } else if (index == 2) {
+                    return IsolatesWidget();
                   }
                   return RandomWords();
                 }

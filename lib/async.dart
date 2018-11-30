@@ -18,17 +18,34 @@ class _AsyncDemoState extends State<AsyncDemo> {
       super.initState();
       loadData();
     }
+
+    Widget buildProgressIndicator() {
+      return Center(child: CircularProgressIndicator(),);
+    }
+
+    Widget buildList() {
+      return ListView.builder(
+        itemCount: widgets.length,
+        itemBuilder: (BuildContext context, int position) {
+          return Padding(padding: EdgeInsets.all(10.0), child: Text("${widgets[position]["title"]}"),);
+        },
+      );
+    }
+
+    Widget buildBody() {
+      if (widgets.length == 0) {
+        return buildProgressIndicator();
+      } else {
+        return buildList();
+      }
+    }
+  
   @override
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
           title: Text("Async Demo"),
-      ),body: ListView.builder(
-        itemCount: widgets.length,
-        itemBuilder: (BuildContext context, int position) {
-          return Padding(padding: EdgeInsets.all(10.0), child: Text("${widgets[position]["title"]}"),);
-        },
-      ),);
+      ),body: buildBody(),);
     }
 
     void loadData() async {

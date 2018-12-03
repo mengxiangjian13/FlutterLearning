@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'demo.dart';
 import 'isolates.dart';
 import 'async.dart';
+import 'gesture.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeList extends StatelessWidget {
-  final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", "Isolates"];
+  final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", "Isolates", "Gesture"];
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +58,8 @@ class HomeList extends StatelessWidget {
                     return AsyncDemo();
                   } else if (index == 2) {
                     return IsolatesWidget();
+                  } else if (index == 3) {
+                    return GestureWidget();
                   }
                   return RandomWords();
                 }

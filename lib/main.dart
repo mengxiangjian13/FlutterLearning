@@ -3,6 +3,7 @@ import 'demo.dart';
 import 'isolates.dart';
 import 'async.dart';
 import 'gesture.dart';
+import 'cupertino.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeList extends StatelessWidget {
-  final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", "Isolates", "Gesture"];
+  final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", 
+  "Isolates", "Gesture", "Cupertino Style"];
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +62,8 @@ class HomeList extends StatelessWidget {
                     return IsolatesWidget();
                   } else if (index == 3) {
                     return GestureWidget();
+                  } else if (index == 4) {
+                    return CupertinoWidget();
                   }
                   return RandomWords();
                 }

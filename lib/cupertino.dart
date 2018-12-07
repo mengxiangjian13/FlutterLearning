@@ -30,7 +30,7 @@ class _CupertinoState extends State<CupertinoWidget> {
 
   Widget buildPage(BuildContext context) {
     if (refresh) {
-      return ListView.builder(itemCount: 4,
+      return ListView.builder(itemCount: 5,
       itemBuilder: (BuildContext context, int index) {
         return buildRow(index);
       },);
@@ -62,6 +62,16 @@ class _CupertinoState extends State<CupertinoWidget> {
         child: Center(child: CupertinoButton(child: Center(child: Text('Alert!'),), color: Color.fromARGB(255, 255, 0, 0),onPressed: (){
           print('Alert!');
         },),));
+    } else {
+      CupertinoTextField field = CupertinoTextField(placeholder: '默认文字', onChanged: (text) {
+        print("text：$text");
+      }, onEditingComplete: () {
+        print("edit complete!");
+      }, onSubmitted: (text) {
+        print('submit text: $text');
+      },);
+      return Padding(padding: EdgeInsets.all(10.0), 
+      child: field);
     }
   }
 }

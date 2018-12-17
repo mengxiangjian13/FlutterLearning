@@ -32,11 +32,7 @@ class LayoutWidget extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          Text('41'),
+          _FavoriteWidget(),
         ],
       ),
       );
@@ -89,15 +85,75 @@ Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situate
         height: 240.0,
         fit: BoxFit.cover,
       );
+      var packedRow = Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.star, color: Colors.green[500]),
+          Icon(Icons.star, color: Colors.green[500]),
+          Icon(Icons.star, color: Colors.green[500]),
+          Icon(Icons.star, color: Colors.black),
+          Icon(Icons.star, color: Colors.black),
+        ],
+      );
       return ListView(
         children: <Widget>[
           imageSection,
           titleSection,
           buttonSection,
-          textSection
+          textSection,
+          packedRow,
         ],
       );
     }
+}
 
+class _FavoriteWidget extends StatefulWidget {
+  @override
+    State<StatefulWidget> createState() {
+      return _FavoriteState();
+    }
+}
 
+class _FavoriteState extends State<_FavoriteWidget> {
+
+  bool _isFavorite = true;
+  int _favoriteCount = 41;
+
+  void iconPress() {
+    setState(() {
+          if (_isFavorite) {
+            _isFavorite = false;
+            _favoriteCount -= 1;
+          } else {
+            _isFavorite = true;
+            _favoriteCount += 1;
+          }
+        });
+  }
+
+  @override
+    Widget build(BuildContext context) {
+      IconData star = _isFavorite ? Icons.star : Icons.star_border;
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(0.0),
+            child: IconButton(
+            icon: Icon(
+              star,
+              color: Colors.red[500],),
+            onPressed: iconPress,
+          ),
+          ),
+          SizedBox(
+            width: 18.0,
+            child: Container(
+              child: Text("$_favoriteCount"),
+            ),
+          )
+        ],
+      );
+    }
 }

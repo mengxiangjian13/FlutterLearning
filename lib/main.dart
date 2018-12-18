@@ -5,6 +5,8 @@ import 'async.dart';
 import 'gesture.dart';
 import 'cupertino.dart';
 import 'layout.dart';
+import 'navigator.dart';
+import 'navigateAnimation.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
 
 class HomeList extends StatelessWidget {
   final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", 
-  "Isolates", "Gesture", "Cupertino Style", "Layout"];
+  "Isolates", "Gesture", "Cupertino Style", "Layout", "Navigator", "Navigate Animation"];
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +69,10 @@ class HomeList extends StatelessWidget {
                     return CupertinoWidget();
                   } else if (index == 5) {
                     return LayoutWidget();
+                  } else if (index == 6) {
+                    return NavRootScreen();
+                  } else if (index == 7) {
+                    return NavAnimationWidget();
                   }
                   return RandomWords();
                 }

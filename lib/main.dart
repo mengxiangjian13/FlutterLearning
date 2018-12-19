@@ -7,6 +7,7 @@ import 'cupertino.dart';
 import 'layout.dart';
 import 'navigator.dart';
 import 'navigateAnimation.dart';
+import 'sliver.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
 
 class HomeList extends StatelessWidget {
   final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", 
-  "Isolates", "Gesture", "Cupertino Style", "Layout", "Navigator", "Navigate Animation"];
+  "Isolates", "Gesture", "Cupertino Style", "Layout", "Navigator", "Navigate Animation",
+  "Sliver"];
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +75,8 @@ class HomeList extends StatelessWidget {
                     return NavRootScreen();
                   } else if (index == 7) {
                     return NavAnimationWidget();
+                  } else if (index == 8) {
+                    return SliverWidget();
                   }
                   return RandomWords();
                 }

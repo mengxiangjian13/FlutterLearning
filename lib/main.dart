@@ -8,6 +8,7 @@ import 'layout.dart';
 import 'navigator.dart';
 import 'navigateAnimation.dart';
 import 'sliver.dart';
+import 'jsonSerialization.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 class HomeList extends StatelessWidget {
   final _contents = ["first demo (RandomWords)", "Threading & asynchronicity", 
   "Isolates", "Gesture", "Cupertino Style", "Layout", "Navigator", "Navigate Animation",
-  "Sliver"];
+  "Sliver", "Json Serialization"];
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +78,8 @@ class HomeList extends StatelessWidget {
                     return NavAnimationWidget();
                   } else if (index == 8) {
                     return SliverWidget();
+                  } else if (index == 9) {
+                    return JsonSerializationWidget();
                   }
                   return RandomWords();
                 }

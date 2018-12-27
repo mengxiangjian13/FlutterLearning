@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Models/repo.dart';
+import 'package:url_launcher/url_launcher.dart' as launcher;
 
 class JsonSerializationWidget extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _JsonSerializationState extends State<JsonSerializationWidget> {
     Map<String, dynamic> dict = json.decode(response.body);
     List<dynamic> data = dict['items'];
     setState(() {
+          repos.removeRange(0, repos.length);
           for (var i = 0; i < data.length; i++) {
             repos.add(Repo.fromJson(data[i]));
           }
@@ -36,7 +38,7 @@ class _JsonSerializationState extends State<JsonSerializationWidget> {
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Repos'),
+          title: Text('RxSwift Repos'),
         ),
         body: buildBody(),
       );
@@ -45,16 +47,19 @@ class _JsonSerializationState extends State<JsonSerializationWidget> {
     Widget buildBody() {
       if (repos.length > 0) {
         return ListView.builder(
-          itemCount: repos.length,
-          itemBuilder: (BuildContext context, int row) {
+          itemCount: repos.length * 2,
+          itemBuilder: (BuildContext context, int i) {
+            if (i.isOdd) {
+              return Divider();
+            }
+            int row = i ~/ 2;
             Repo repo = repos[row];
-            String name = repo.name;
             String fullName = repo.fullName;
-            int id = repo.id;
             return ListTile(
-              title: Text(name),
+              title: Text(fullName),
               onTap: () {
-                print('repo id is $id, web page is https://github.com/$fullName');
+                String url = 'https://github.com/$fullName';
+                launcher.launch(url);                
               },
             );
           },

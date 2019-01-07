@@ -26,12 +26,15 @@ class _JsonSerializationState extends State<JsonSerializationWidget> {
     http.Response response = await http.get(url);
     Map<String, dynamic> dict = json.decode(response.body);
     List<dynamic> data = dict['items'];
-    setState(() {
+    if (this.mounted) {
+      // check this.mounted before setState
+      setState(() {
           repos.removeRange(0, repos.length);
           for (var i = 0; i < data.length; i++) {
             repos.add(Repo.fromJson(data[i]));
           }
         });
+    }
   }
 
   @override
